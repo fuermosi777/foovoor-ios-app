@@ -13,46 +13,64 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        //
-        self.contentView = [[UIView alloc] initWithFrame:self.bounds];
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self showBigView:frame];
         
-        // image view
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height * 3.0 / 4.0)];
-        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.imageView.clipsToBounds = YES;
-        
-        // title label
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.imageView.frame.size.height + 5.0, frame.size.width - 30.0, 40)];
-        [self.titleLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:16]];
-        
-        // subtitle label
-        self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.imageView.frame.size.height + 25.0, frame.size.width - 30.0, 40)];
-        self.subtitleLabel.textColor = [UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1];
-        [self.subtitleLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:14]];
-        
-        // discount label
-        self.discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.imageView.frame.size.height + 25.0, frame.size.width - 30.0, 40)];
-        self.discountLabel.textColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1];
-        [self.discountLabel setTextAlignment:NSTextAlignmentRight];
-        [self.discountLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:14]];
-        
-        [self addSubview:self.contentView];
-        [self.contentView addSubview:self.imageView];
-        [self.contentView addSubview:self.titleLabel];
-        [self.contentView addSubview:self.subtitleLabel];
-        [self.contentView addSubview:self.discountLabel];
-        
-        // radius
-        self.contentView.layer.cornerRadius = 4.0;
-        self.contentView.layer.masksToBounds = YES;
-        
-        // shadow
-        self.layer.shadowOffset = CGSizeMake(0, 1);
-        self.layer.shadowRadius = 1;
-        self.layer.shadowOpacity = 0.3;
+        CATransition *transition = [CATransition animation];
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+        transition.type = kCATransitionFade;
+        transition.duration = 0.5;
     }
     return self;
+}
+
+- (void)showBigView:(CGRect)frame {
+    //
+    self.contentView = [[UIView alloc] initWithFrame:self.bounds];
+    self.contentView.backgroundColor = [UIColor whiteColor];
+    
+    // image view
+    self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.clipsToBounds = YES;
+    
+    // title label
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.imageView.frame.size.height * 3.5 / 5.0, self.imageView.frame.size.width - 30.0, 40)];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    [self.titleLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:20]];
+    
+    // subtitle label
+    self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.imageView.frame.size.height * 3.5 / 5.0 + 25.0, self.imageView.frame.size.width - 30.0, 40)];
+    self.subtitleLabel.textColor = [UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1];
+    [self.subtitleLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:14]];
+    
+    // discount label
+    self.discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 40, 20)];
+
+    self.discountLabel.textColor = [UIColor whiteColor];
+    [self.discountLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.discountLabel.layer setCornerRadius:4.0];
+    self.discountLabel.clipsToBounds = YES;
+    [self.discountLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:14]];
+    
+    // 加入渐变layer
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.bounds;
+
+    // 渐变颜色
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6] CGColor], nil];
+    [self.imageView.layer addSublayer:gradient];
+    
+    // heart
+    UIImageView *heartView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width - 35.0, 15, 20, 20)];
+    heartView.image = [UIImage imageNamed:@"heart"];
+    [self.imageView addSubview:heartView];
+    
+    [self addSubview:self.contentView];
+    [self.contentView addSubview:self.imageView];
+    [self.imageView addSubview:self.titleLabel];
+    [self.imageView addSubview:self.subtitleLabel];
+    [self.imageView addSubview:self.discountLabel];
 }
 
 - (void)addImage:(UIImage *)image {
@@ -75,6 +93,14 @@
 
 - (void)addDiscount:(NSString *)text {
     if (self) {
+        float discount = [text floatValue];
+        if (discount > 5 && discount <= 10) {
+            self.discountLabel.backgroundColor = [UIColor colorWithRed:0.39 green:0.62 blue:0.37 alpha:0.9];
+        } else if (discount > 10 && discount <= 15){
+            self.discountLabel.backgroundColor = [UIColor colorWithRed:0.71 green:0.16 blue:0.31 alpha:0.9];
+        } else {
+            self.discountLabel.backgroundColor = [UIColor colorWithRed:0.13 green:0.13 blue:0.46 alpha:0.9];
+        }
         self.discountLabel.text = text;
     }
 }

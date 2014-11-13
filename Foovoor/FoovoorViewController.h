@@ -10,4 +10,7 @@
 
 @interface FoovoorViewController : UINavigationController
 
+- (void)becomeTransparent;
+- (void)becomeOpaque;
+
 @end

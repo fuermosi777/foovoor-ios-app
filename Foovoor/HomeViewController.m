@@ -26,13 +26,6 @@
     // set bg color
     self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
     
-    // set font
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"MavenProRegular" size:14], NSFontAttributeName, [UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1], NSForegroundColorAttributeName, nil];
-    
-    // set bar button font
-    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
-    
     // customize navbar title
     self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"foovoor"]];
     // set clickable
@@ -96,7 +89,7 @@
 - (void)createScrollView {
     
     self.scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [self.scroll setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
+    [self.scroll setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.scroll.showsVerticalScrollIndicator = NO;
 }
 
@@ -127,26 +120,42 @@
 }
 
 - (void)showView:(NSMutableArray *)array {
+    // create vars
+    CGFloat bigPanelHeight = self.view.frame.size.width;
+    CGFloat bigPanelWidth = self.view.frame.size.width;
+    CGFloat smallPanelHeight = bigPanelHeight * 2.0 / 3.0;
+    CGFloat smallPanelWidth = (self.view.frame.size.width - 5.0) / 2.0;
+    
     // create scroll
     [self createScrollView];
     
     // add refresh button
     [self addRefreshButton];
     
-    CGFloat singleViewHeight = 280;
-    
     // create a new scroll view
-    self.scroll.contentSize = CGSizeMake(self.view.frame.size.width,[array count] * (singleViewHeight + 15) + 45);
+    self.scroll.contentSize = CGSizeMake(self.view.frame.size.width,bigPanelHeight + ([array count] - 1.0) / 2.0 * smallPanelHeight + ([array count] - 1.0) / 2.0 * 5.0 + 104);
     [self.view addSubview:self.scroll];
     
-
+    
+    
     // create subviews in the scroll view
     for (int i = 0; i < [array count]; i++) {
         // 取得每个hot餐馆信息存入dictionary
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
         dictionary = [array objectAtIndex:i];
         
-        PanelView *panel = [[PanelView alloc] initWithFrame:CGRectMake(5, i * (singleViewHeight + 15) + 5.0, self.view.frame.size.width - 10.0, singleViewHeight)];
+        PanelView *panel = [PanelView alloc];
+        if (i != 0) {
+            if (i%2 != 0) { // odd
+                panel = [panel initWithFrame:CGRectMake(0, bigPanelHeight + 5.0 + (smallPanelHeight + 5.0) * (i - 1) / 2.0, smallPanelWidth, smallPanelHeight)];
+            } else { // even
+                panel = [panel initWithFrame:CGRectMake(smallPanelWidth + 5.0, bigPanelHeight + 5.0 + (smallPanelHeight + 5.0) * (i - 2) / 2.0, smallPanelWidth, smallPanelHeight)];
+            }
+        } else {
+            panel = [panel initWithFrame:CGRectMake(0, i * (bigPanelHeight + 5), bigPanelWidth, bigPanelHeight)];
+
+        }
+        
         
         // start a new image download manager
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
@@ -168,7 +177,7 @@
 
         NSString *tags = [[[dictionary objectForKey:@"tag"] valueForKey:@"description"] componentsJoinedByString:@", "];
         [panel addSubtitle:[NSString stringWithFormat:@"%@",tags]];
-        [panel addDiscount:[NSString stringWithFormat:@"Up to %.0f%% off", [(NSString *)[dictionary objectForKey:@"discount"] doubleValue] * 100]];
+        [panel addDiscount:[NSString stringWithFormat:@"%.0f%%", [(NSString *)[dictionary objectForKey:@"discount"] doubleValue] * 100]];
         
         
         

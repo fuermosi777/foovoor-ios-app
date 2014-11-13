@@ -16,14 +16,55 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.tintColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.23 alpha:1];
-
+    
+    self.navigationBar.tintColor = [UIColor whiteColor];
+    
+    // set font
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"MavenProRegular" size:14], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    
+    // set bar button font
+    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+    
+    [self becomeOpaque];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)becomeTransparent {
+    CATransition *transition = [CATransition animation];
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    transition.type = kCATransitionFade;
+    transition.duration = 0.5;
+    
+    [self.navigationBar.layer addAnimation:transition forKey:nil];
+    
+    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"transparent"]
+                             forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationBar setShadowImage:[UIImage new]];
+    self.navigationBar.translucent = YES;
+}
+
+- (void)becomeOpaque {
+    CATransition *transition = [CATransition animation];
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    transition.type = kCATransitionFade;
+    transition.duration = 0.5;
+    
+    [self.navigationBar.layer addAnimation:transition forKey:nil];
+    
+    //[self.navigationBar setBackgroundImage:[UIImage imageNamed:@"opaque"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    
+    self.navigationBar.barTintColor = [UIColor colorWithRed:0.91 green:0.25 blue:0.15 alpha:1];
+    [self.navigationBar setShadowImage:[UIImage new]];
+    //self.navigationBar.translucent = NO;
+}
+
 
 /*
 #pragma mark - Navigation

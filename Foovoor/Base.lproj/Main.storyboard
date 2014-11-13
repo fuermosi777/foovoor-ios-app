@@ -24,19 +24,15 @@
             </objects>
             <point key="canvasLocation" x="1280" y="324"/>
         </scene>
-        <!--Home-->
+        <!--Explore-->
         <scene sceneID="Daf-9p-Qyi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aql-Tx-zxT" customClass="FoovoorViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house" id="VaS-rJ-qCX"/>
+                    <tabBarItem key="tabBarItem" title="Explore" image="wineglass" id="VaS-rJ-qCX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aoQ-fp-aLg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.87058823529411766" green="0.26666666666666666" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.87058823529999996" green="0.2666666667" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -185,8 +181,8 @@
     </scenes>
     <resources>
         <image name="code" width="22" height="22"/>
-        <image name="house" width="22" height="22"/>
         <image name="marker" width="22" height="22"/>
         <image name="person" width="22" height="22"/>
+        <image name="wineglass" width="22" height="22"/>
     </resources>
 </document>

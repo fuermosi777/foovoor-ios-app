@@ -36,6 +36,8 @@
         CGFloat xOrigin = i * self.frame.size.width;
         
         UIImageView *awesomeView = [[UIImageView alloc] initWithFrame:CGRectMake(xOrigin, 0, self.frame.size.width, self.frame.size.height)];
+        awesomeView.contentMode = UIViewContentModeScaleAspectFill;
+        awesomeView.clipsToBounds = YES;
         
         // 添加hot restaurant图片，开始一个新的image download manager
         SDWebImageManager *manager = [SDWebImageManager sharedManager];

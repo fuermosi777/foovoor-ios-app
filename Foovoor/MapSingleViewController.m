@@ -8,6 +8,7 @@
 
 #import "MapSingleViewController.h"
 #import "MarkerAnnotation.h"
+#import "FoovoorViewController.h"
 
 @interface MapSingleViewController () <CLLocationManagerDelegate>
 
@@ -18,15 +19,18 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     // nav bar transparent
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"transparent"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [(FoovoorViewController *)self.navigationController becomeTransparent];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [(FoovoorViewController *)self.navigationController becomeOpaque];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // 地图
-    self.mapOfView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.mapOfView = [[MKMapView alloc] initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height)];
     self.mapOfView.showsPointsOfInterest = NO;
     self.mapOfView.delegate = self;
     

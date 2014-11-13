@@ -67,7 +67,7 @@
 
 - (void)addUserInfo {
     // create scroll
-    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0,64,self.view.frame.size.width,self.view.frame.size.height)
+    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)
                                                    style:UITableViewStyleGrouped];
     // setup padding
     [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 64, 0)];
@@ -212,7 +212,7 @@
 }
 
 - (void)addSigninButton {
-    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 100, self.view.frame.size.width - 30, 40)];
+    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 40, self.view.frame.size.width - 30, 40)];
     [submitButton setTitle:@"Sign in" forState:UIControlStateNormal];
     submitButton.backgroundColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1];
     submitButton.layer.cornerRadius = 4.0f;
@@ -227,7 +227,7 @@
 }
 
 - (void)addSignupButton {
-    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 160, self.view.frame.size.width - 30, 40)];
+    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 100, self.view.frame.size.width - 30, 40)];
     [signupButton setTitle:@"Sign up" forState:UIControlStateNormal];
     signupButton.backgroundColor = [UIColor clearColor];
     signupButton.layer.cornerRadius = 4.0f;

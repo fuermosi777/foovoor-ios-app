@@ -15,6 +15,8 @@
 #import <MapKit/MapKit.h>
 #import "MapSingleViewController.h"
 #import "BusinessBannerScrollView.h"
+#import "FoovoorViewController.h"
+
 
 #define BANNER 0
 #define NOTE 1
@@ -32,14 +34,11 @@
 @implementation BusinessDetailViewController
 
 - (void)viewWillDisappear:(BOOL)animated {
-    self.navigationController.navigationBar.barTintColor = nil;
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:nil];
-
+    [(FoovoorViewController *)self.navigationController becomeOpaque];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self transparentNavbar];
+    [(FoovoorViewController *)self.navigationController becomeTransparent];
 }
 
 - (void)viewDidLoad {
@@ -51,7 +50,10 @@
     // create scroll
     self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0,-105,self.view.frame.size.width,self.view.frame.size.height + 105)
                                                    style:UITableViewStyleGrouped];
-    [self transparentNavbar];
+    
+    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 100, 0)];
+    
+    [(FoovoorViewController *)self.navigationController becomeTransparent];
     
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
@@ -65,12 +67,6 @@
     
     // initialize date buttons array
     self.dateButtons = [NSMutableArray new];
-}
-
-- (void)transparentNavbar {
-    // nav bar transparent
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"transparent"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -220,7 +216,7 @@
                                                                                   lineBreakMode:NSLineBreakByWordWrapping];
             
             //adjust the label the the new height.
-            rowHeight = expectedLabelSize.height + 28;
+            rowHeight = expectedLabelSize.height * 1.8;
     
             break;
         }
@@ -424,12 +420,27 @@
     } else if (indexPath.section == DESCRIPTION) {
         [[myCellView textLabel] setText:[self.businessDetail objectForKey:@"description"]];
         myCellView.textLabel.numberOfLines = 0;
+        
+        NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
+        style.minimumLineHeight = 20.f;
+        style.maximumLineHeight = 20.f;
+        NSDictionary *attributtes = @{NSParagraphStyleAttributeName : style,};
+        myCellView.textLabel.attributedText = [[NSAttributedString alloc] initWithString:[self.businessDetail objectForKey:@"description"]
+                                                                              attributes:attributtes];
+        
         [myCellView.textLabel sizeToFit];
     } else if (indexPath.section == NOTE) {
       
         // add text
-        [[myCellView textLabel] setText:[self.businessDetail objectForKey:@"note"]];
         myCellView.textLabel.numberOfLines = 0;
+        
+        NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
+        style.minimumLineHeight = 20.f;
+        style.maximumLineHeight = 20.f;
+        NSDictionary *attributtes = @{NSParagraphStyleAttributeName : style,};
+        myCellView.textLabel.attributedText = [[NSAttributedString alloc] initWithString:[self.businessDetail objectForKey:@"note"]
+                                                                              attributes:attributtes];
+        
         [myCellView.textLabel sizeToFit];
     }
     // 取消每个cell的选择高亮
@@ -492,6 +503,15 @@
     }
     
     [cell addSubview:self.discountScroll]; // add new scroll to cell
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    float top = scrollView.contentOffset.y;
+    if (top > 80) {
+        [(FoovoorViewController *)self.navigationController becomeOpaque];
+    } else {
+        [(FoovoorViewController *)self.navigationController becomeTransparent];
+    }
 }
 
 
