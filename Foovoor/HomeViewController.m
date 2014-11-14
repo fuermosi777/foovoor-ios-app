@@ -16,12 +16,20 @@
 
 @implementation HomeViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+
+}
+
 - (void)viewDidAppear:(BOOL)animated {
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     // set bg color
     self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
@@ -55,7 +63,7 @@
 }
 
 - (void)initActivityIndicator {
-    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_indicator];
     self.navigationItem.leftBarButtonItem = item;
     _indicator.hidesWhenStopped = YES;
@@ -89,7 +97,7 @@
 - (void)createScrollView {
     
     self.scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [self.scroll setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [self.scroll setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     self.scroll.showsVerticalScrollIndicator = NO;
 }
 
@@ -133,7 +141,7 @@
     [self addRefreshButton];
     
     // create a new scroll view
-    self.scroll.contentSize = CGSizeMake(self.view.frame.size.width,bigPanelHeight + ([array count] - 1.0) / 2.0 * smallPanelHeight + ([array count] - 1.0) / 2.0 * 5.0 + 104);
+    self.scroll.contentSize = CGSizeMake(self.view.frame.size.width,bigPanelHeight + ([array count] - 1.0) / 2.0 * smallPanelHeight + ([array count] - 1.0) / 2.0 * 5.0 + 60);
     [self.view addSubview:self.scroll];
     
     

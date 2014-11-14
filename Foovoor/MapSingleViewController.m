@@ -17,20 +17,13 @@
 
 @implementation MapSingleViewController
 
-- (void)viewWillDisappear:(BOOL)animated {
-    // nav bar transparent
-    [(FoovoorViewController *)self.navigationController becomeTransparent];
-}
 
-- (void)viewWillAppear:(BOOL)animated {
-    [(FoovoorViewController *)self.navigationController becomeOpaque];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // 地图
-    self.mapOfView = [[MKMapView alloc] initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height)];
+    self.mapOfView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.mapOfView.showsPointsOfInterest = NO;
     self.mapOfView.delegate = self;
     

@@ -17,7 +17,6 @@
 #import "BusinessBannerScrollView.h"
 #import "FoovoorViewController.h"
 
-
 #define BANNER 0
 #define NOTE 1
 #define DETAILS 2
@@ -37,8 +36,14 @@
     [(FoovoorViewController *)self.navigationController becomeOpaque];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [(FoovoorViewController *)self.navigationController becomeTransparent];
+- (void)viewWillAppear:(BOOL)animated {
+    float top = self.scrollView.contentOffset.y;
+    
+    if (top > 80) {
+        [(FoovoorViewController *)self.navigationController becomeOpaque];
+    } else {
+        [(FoovoorViewController *)self.navigationController becomeTransparent];
+    }
 }
 
 - (void)viewDidLoad {
@@ -47,14 +52,24 @@
     // set bg color
     self.view.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.95 alpha:1];
     
+    // set title
+    self.navigationItem.title = (NSString *)[self.businessDetail objectForKey:@"name"];
+    
     // create scroll
-    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0,-105,self.view.frame.size.width,self.view.frame.size.height + 105)
+    [self createScrollView];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
+    // initialize date buttons array
+    self.dateButtons = [NSMutableArray new];
+}
+
+- (void)createScrollView {
+    // create scroll
+    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0, -41, self.view.frame.size.width, self.view.frame.size.height + 105)
                                                    style:UITableViewStyleGrouped];
     
-    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 100, 0)];
-    
-    [(FoovoorViewController *)self.navigationController becomeTransparent];
-    
+    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
     self.scrollView.bounces = NO;
@@ -64,9 +79,6 @@
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
     
     [self.view addSubview:self.scrollView];
-    
-    // initialize date buttons array
-    self.dateButtons = [NSMutableArray new];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -189,7 +201,7 @@
     switch (indexPath.section)
     {
         case BANNER:
-            rowHeight = 260;
+            rowHeight = self.view.frame.size.width * 3.0 / 4.0;
             break;
         case MAP:
             rowHeight = 100;
@@ -233,11 +245,15 @@
                                                          reuseIdentifier:@"Cell"];
     
     // 填写cell内容
-    if (indexPath.section == BANNER){
-        float height = [self tableView:tableView heightForRowAtIndexPath:indexPath];
+    if (indexPath.section == BANNER) {
         
-        self.bannerScroll = [[BusinessBannerScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
+        UIView *bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * 3.0 / 4.0)];
+        
+        CGFloat height = bannerView.bounds.size.height;
+        
+        self.bannerScroll = [[BusinessBannerScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * 3.0 / 4.0)];
         self.bannerScroll.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+        self.bannerScroll.delegate = self; // set delegate for scroll control
         
         NSMutableArray *photoArray = [[self.businessDetail objectForKey:@"photos"] mutableCopy];
         
@@ -245,22 +261,30 @@
         
         [self.bannerScroll setPhotos:photoArray];
         
-        [myCellView addSubview:self.bannerScroll];
+        [myCellView addSubview:bannerView];
+        [bannerView addSubview:self.bannerScroll];
+        
         
         // 加入渐变layer
         CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = CGRectMake(0, 0, self.view.frame.size.width, 260);
+        gradient.frame = CGRectMake(0, 0, self.view.frame.size.width, height);
         // 渐变颜色
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8] CGColor], nil];
-        [myCellView.layer addSublayer:gradient];
+        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8] CGColor], (id)[[UIColor clearColor] CGColor], (id)[[UIColor clearColor] CGColor], nil];
+        [bannerView.layer addSublayer:gradient];
         
-        // 加入标题文字
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 190, myCellView.frame.size.width, myCellView.frame.size.height)];
-        label.text = (NSString *)[self.businessDetail objectForKey:@"name"];
-        label.font = [UIFont fontWithName:@"MavenProRegular" size:26]; // set font size
-        label.textColor = [UIColor whiteColor]; // set color to white
-        // 加入到图片中
-        [myCellView addSubview:label];
+        // create page control
+        UIView *pageControlView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0, self.view.frame.size.width * 3.0 / 4.0 + 10, self.view.frame.size.width, 20)];
+        
+        self.pageControl = [[UIPageControl alloc] init];
+        [self.pageControl setNumberOfPages:[photoArray count]];
+        [self.pageControl setCurrentPage:0];
+        [self.pageControl setPageIndicatorTintColor:[UIColor lightGrayColor]];
+        [self.pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.87 green:0.31 blue:0.2 alpha:1]];
+        
+        [pageControlView addSubview:self.pageControl];
+        
+        [myCellView addSubview:pageControlView];
+        
         
     } else if (indexPath.section == DETAILS) {
         
@@ -511,6 +535,14 @@
         [(FoovoorViewController *)self.navigationController becomeOpaque];
     } else {
         [(FoovoorViewController *)self.navigationController becomeTransparent];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // only banner scroll view can trigger
+    if ([scrollView isKindOfClass:[BusinessBannerScrollView class]]) {
+        int page = scrollView.contentOffset.x / scrollView.frame.size.width;
+        self.pageControl.currentPage = page;
     }
 }
 

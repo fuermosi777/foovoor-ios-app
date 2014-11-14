@@ -46,7 +46,6 @@
                              forBarMetrics:UIBarMetricsDefault];
     
     [self.navigationBar setShadowImage:[UIImage new]];
-    self.navigationBar.translucent = YES;
 }
 
 - (void)becomeOpaque {
@@ -57,12 +56,9 @@
     
     [self.navigationBar.layer addAnimation:transition forKey:nil];
     
-    //[self.navigationBar setBackgroundImage:[UIImage imageNamed:@"opaque"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
     self.navigationBar.barTintColor = [UIColor colorWithRed:0.91 green:0.25 blue:0.15 alpha:1];
-    [self.navigationBar setShadowImage:[UIImage new]];
-    //self.navigationBar.translucent = NO;
 }
 
 

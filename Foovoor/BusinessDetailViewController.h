@@ -21,5 +21,6 @@
 @property UIScrollView *discountScroll;
 @property NSMutableArray *dateButtons;
 @property BusinessBannerScrollView *bannerScroll;
+@property UIPageControl *pageControl;
 
 @end
