@@ -1,10 +1,4 @@
-//
-//  PanelView.m
-//  Foovoor
-//
-//  Created by Hao Liu on 10/26/14.
-//  Copyright (c) 2014 foovoor. All rights reserved.
-//
+// panel view on the home page
 
 #import "PanelView.h"
 
@@ -60,11 +54,6 @@
     // 渐变颜色
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6] CGColor], nil];
     [self.imageView.layer addSublayer:gradient];
-    
-    // heart
-    UIImageView *heartView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width - 35.0, 15, 20, 20)];
-    heartView.image = [UIImage imageNamed:@"heart"];
-    [self.imageView addSubview:heartView];
     
     [self addSubview:self.contentView];
     [self.contentView addSubview:self.imageView];

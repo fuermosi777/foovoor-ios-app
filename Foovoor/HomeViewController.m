@@ -7,6 +7,7 @@
 #import "MapViewController.h"
 #import "PanelView.h"
 #import "WebViewController.h"
+#import "HeartButton.h"
 
 @interface HomeViewController ()
 
@@ -197,6 +198,11 @@
         [panel addGestureRecognizer:awesomeViewSingleFingerTap];
         panel.tag = [[dictionary objectForKey:@"id"] intValue];
         [panel setUserInteractionEnabled:YES];
+        
+        // add heart
+        HeartButton *heart = [[HeartButton alloc] initWithFrame:CGRectMake(panel.frame.size.width - 35.0, 15.0, 20.0, 20.0)
+                                                   restaurantID:[[dictionary objectForKey:@"id"] intValue]];
+        [panel addSubview:heart];
 
     }
 }

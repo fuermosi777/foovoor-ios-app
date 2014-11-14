@@ -26,6 +26,8 @@
 		3F72808919F8ABC20032FADB /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F72808819F8ABC20032FADB /* MapViewController.m */; };
 		3F72808C19F8B1560032FADB /* MarkerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F72808B19F8B1560032FADB /* MarkerAnnotation.m */; };
 		3F72809219F9A5BA0032FADB /* DateScrollViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F72809119F9A5BA0032FADB /* DateScrollViewButton.m */; };
+		3FB0F97E1A16680800FB908A /* HeartButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0F97D1A16680800FB908A /* HeartButton.m */; };
+		3FB0F9811A167B5100FB908A /* PostFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0F9801A167B5100FB908A /* PostFavorite.m */; };
 		3FBD36251A0A86D9000E1969 /* GetUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD36241A0A86D9000E1969 /* GetUserInfo.m */; };
 		3FBD36281A0A98C0000E1969 /* TableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD36271A0A98C0000E1969 /* TableViewCellButton.m */; };
 		3FBD362B1A0AA0C8000E1969 /* PanelViewOnMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD362A1A0AA0C8000E1969 /* PanelViewOnMap.m */; };
@@ -93,6 +95,10 @@
 		3F72808B19F8B1560032FADB /* MarkerAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerAnnotation.m; sourceTree = "<group>"; };
 		3F72809019F9A5BA0032FADB /* DateScrollViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateScrollViewButton.h; sourceTree = "<group>"; };
 		3F72809119F9A5BA0032FADB /* DateScrollViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateScrollViewButton.m; sourceTree = "<group>"; };
+		3FB0F97C1A16680800FB908A /* HeartButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartButton.h; sourceTree = "<group>"; };
+		3FB0F97D1A16680800FB908A /* HeartButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartButton.m; sourceTree = "<group>"; };
+		3FB0F97F1A167B5100FB908A /* PostFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFavorite.h; sourceTree = "<group>"; };
+		3FB0F9801A167B5100FB908A /* PostFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFavorite.m; sourceTree = "<group>"; };
 		3FBD36231A0A86D9000E1969 /* GetUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserInfo.h; sourceTree = "<group>"; };
 		3FBD36241A0A86D9000E1969 /* GetUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserInfo.m; sourceTree = "<group>"; };
 		3FBD36261A0A98C0000E1969 /* TableViewCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellButton.h; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 				3FCB967F19E5E8DC006C3ADD /* GetHomeDeals.m */,
 				3FBD36231A0A86D9000E1969 /* GetUserInfo.h */,
 				3FBD36241A0A86D9000E1969 /* GetUserInfo.m */,
+				3FB0F97F1A167B5100FB908A /* PostFavorite.h */,
+				3FB0F9801A167B5100FB908A /* PostFavorite.m */,
 				3FCB966219E5E56E006C3ADD /* Images.xcassets */,
 				3FCB966419E5E56E006C3ADD /* LaunchScreen.xib */,
 				3FCB965519E5E56E006C3ADD /* Supporting Files */,
@@ -242,6 +250,8 @@
 				3FBD36301A0AC038000E1969 /* TableViewCellIconAndTextView.m */,
 				3FDCDA501A0C785900EC8A7C /* BusinessBannerScrollView.h */,
 				3FDCDA511A0C785900EC8A7C /* BusinessBannerScrollView.m */,
+				3FB0F97C1A16680800FB908A /* HeartButton.h */,
+				3FB0F97D1A16680800FB908A /* HeartButton.m */,
 			);
 			path = Foovoor;
 			sourceTree = "<group>";
@@ -439,7 +449,9 @@
 				3F661DFA1A000FB600BE0B5D /* AlertView.m in Sources */,
 				3F661E031A0043E100BE0B5D /* InputField.m in Sources */,
 				3FCB31DB19E8E98800732ADB /* CodeViewController.m in Sources */,
+				3FB0F97E1A16680800FB908A /* HeartButton.m in Sources */,
 				3FBD36281A0A98C0000E1969 /* TableViewCellButton.m in Sources */,
+				3FB0F9811A167B5100FB908A /* PostFavorite.m in Sources */,
 				3FDCDA521A0C785900EC8A7C /* BusinessBannerScrollView.m in Sources */,
 				3FCB965B19E5E56E006C3ADD /* AppDelegate.m in Sources */,
 				3FCB965819E5E56E006C3ADD /* main.m in Sources */,

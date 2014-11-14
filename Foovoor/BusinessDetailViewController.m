@@ -66,10 +66,10 @@
 
 - (void)createScrollView {
     // create scroll
-    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0, -41, self.view.frame.size.width, self.view.frame.size.height + 105)
+    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0, -41, self.view.frame.size.width, self.view.frame.size.height)
                                                    style:UITableViewStyleGrouped];
     
-    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 20, 0)];
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
     self.scrollView.bounces = NO;
