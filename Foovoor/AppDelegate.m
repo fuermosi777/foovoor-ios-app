@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     // set navbar color
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; // set status bar color to white
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault]; // set status bar color to white
 
     return YES;
 }

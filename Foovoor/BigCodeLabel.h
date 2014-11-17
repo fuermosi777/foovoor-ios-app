@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) NSString *code;
 
-- (id) initWithCode: (NSString *)code;
+- (id) initWithFrame:(CGRect)frame code: (NSString *)code;
 
 @end

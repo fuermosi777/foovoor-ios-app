@@ -17,8 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.tintColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.23 alpha:1];
-    self.tabBar.barTintColor = [UIColor blackColor];
-
+    self.tabBar.barTintColor = [UIColor whiteColor];
+    
+    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"white"]];
+    
+    [self.tabBar setShadowImage:[UIImage new]];
+    
     self.delegate = self;
     // Do any additional setup after loading the view.
 }

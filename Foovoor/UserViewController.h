@@ -14,6 +14,7 @@
 @property NSString *password;
 @property NSMutableDictionary *dict;
 @property UITableView *scrollView;
+@property UIActivityIndicatorView *indicator;
 
 - (void)loadComplete:(NSMutableDictionary *)dict;
 - (void)signOutUser:(id)sender;

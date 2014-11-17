@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     // set bg color
-    self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     
     // set title
     self.navigationController.navigationBar.topItem.title = @"Profile";
@@ -36,6 +36,19 @@
     } else {
         [self loadData];
     }
+    
+    // init indicator
+    if (!_indicator) {
+        [self initActivityIndicator];
+    }
+}
+
+- (void)initActivityIndicator {
+    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [_indicator setColor:[UIColor colorWithRed:0.93 green:0.35 blue:0.23 alpha:1]];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_indicator];
+    self.navigationItem.leftBarButtonItem = item;
+    _indicator.hidesWhenStopped = YES;
 }
 
 - (void)reloadView {
@@ -73,7 +86,7 @@
     [self.scrollView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
-    self.scrollView.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+    self.scrollView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     
     [self.view addSubview:self.scrollView];
 }
@@ -181,6 +194,8 @@
 }
 
 - (void)loadData {
+    [_indicator startAnimating];
+    
     GetUserInfo *getUserInfo = [[GetUserInfo alloc] init];
     
     // 1 start a post data
@@ -207,15 +222,16 @@
 }
 
 - (void)loadComplete:(NSMutableDictionary *)dict {
+    [_indicator stopAnimating];
+    
     self.dict = dict;
     [self showAfterLoginView];
 }
 
 - (void)addSigninButton {
-    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 80, self.view.frame.size.width - 30, 40)];
+    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 40)];
     [submitButton setTitle:@"Sign in" forState:UIControlStateNormal];
     submitButton.backgroundColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1];
-    submitButton.layer.cornerRadius = 4.0f;
     
     // set font
     submitButton.titleLabel.font = [UIFont fontWithName:@"MavenProRegular" size:14];
@@ -227,10 +243,9 @@
 }
 
 - (void)addSignupButton {
-    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 140, self.view.frame.size.width - 30, 40)];
+    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(-1.0, 140, self.view.frame.size.width + 2.0, 40)];
     [signupButton setTitle:@"Sign up" forState:UIControlStateNormal];
     signupButton.backgroundColor = [UIColor clearColor];
-    signupButton.layer.cornerRadius = 4.0f;
     signupButton.layer.borderColor = [[UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1] CGColor];
     signupButton.layer.borderWidth = 1.0f;
     // set text color

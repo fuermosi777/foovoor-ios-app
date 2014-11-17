@@ -33,24 +33,18 @@
 @implementation BusinessDetailViewController
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [(FoovoorViewController *)self.navigationController becomeOpaque];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    float top = self.scrollView.contentOffset.y;
-    
-    if (top > 80) {
-        [(FoovoorViewController *)self.navigationController becomeOpaque];
-    } else {
-        [(FoovoorViewController *)self.navigationController becomeTransparent];
-    }
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // set bg color
-    self.view.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.95 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     
     // set title
     self.navigationItem.title = (NSString *)[self.businessDetail objectForKey:@"name"];
@@ -66,17 +60,16 @@
 
 - (void)createScrollView {
     // create scroll
-    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0, -41, self.view.frame.size.width, self.view.frame.size.height)
+    self.scrollView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 60)
                                                    style:UITableViewStyleGrouped];
     
-    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 20, 0)];
     self.scrollView.dataSource = self;
     self.scrollView.delegate = self;
-    self.scrollView.bounces = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
+    [self.scrollView setSeparatorColor:[UIColor clearColor]];
     
     // bg
-    self.scrollView.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+    self.scrollView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     
     [self.view addSubview:self.scrollView];
 }
@@ -143,6 +136,9 @@
     CGFloat height;
     switch (section)
     {
+        case BANNER:
+            height = 64.0;
+            break;
         default:
             height = 40.0;
             break;
@@ -215,8 +211,7 @@
                                                                                   lineBreakMode:NSLineBreakByWordWrapping];
             
             //adjust the label the the new height.
-            rowHeight = expectedLabelSize.height + 28;
-
+            rowHeight = expectedLabelSize.height + 45;
             break;
         }
         case DESCRIPTION:
@@ -249,8 +244,6 @@
         
         UIView *bannerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * 3.0 / 4.0)];
         
-        CGFloat height = bannerView.bounds.size.height;
-        
         self.bannerScroll = [[BusinessBannerScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * 3.0 / 4.0)];
         self.bannerScroll.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
         self.bannerScroll.delegate = self; // set delegate for scroll control
@@ -265,15 +258,8 @@
         [bannerView addSubview:self.bannerScroll];
         
         
-        // 加入渐变layer
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = CGRectMake(0, 0, self.view.frame.size.width, height);
-        // 渐变颜色
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8] CGColor], (id)[[UIColor clearColor] CGColor], (id)[[UIColor clearColor] CGColor], nil];
-        [bannerView.layer addSublayer:gradient];
-        
         // create page control
-        UIView *pageControlView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0, self.view.frame.size.width * 3.0 / 4.0 + 10, self.view.frame.size.width, 20)];
+        UIView *pageControlView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0, self.view.frame.size.width * 3.0 / 4.0 + bannerView.bounds.origin.y + 10, self.view.frame.size.width, 20)];
         
         self.pageControl = [[UIPageControl alloc] init];
         [self.pageControl setNumberOfPages:[photoArray count]];
@@ -282,8 +268,11 @@
         [self.pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.87 green:0.31 blue:0.2 alpha:1]];
         
         [pageControlView addSubview:self.pageControl];
-        
         [myCellView addSubview:pageControlView];
+
+        
+        // set border remove
+        [myCellView.contentView.layer setBorderColor:[UIColor blackColor].CGColor];
         
         
     } else if (indexPath.section == DETAILS) {
@@ -527,15 +516,6 @@
     }
     
     [cell addSubview:self.discountScroll]; // add new scroll to cell
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    float top = scrollView.contentOffset.y;
-    if (top > 80) {
-        [(FoovoorViewController *)self.navigationController becomeOpaque];
-    } else {
-        [(FoovoorViewController *)self.navigationController becomeTransparent];
-    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

@@ -27,7 +27,7 @@
     [super viewDidLoad];
     
     // set bg color
-    self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     
     // check login
     if (!self.checkLoginStatus) {
@@ -102,7 +102,7 @@
 }
 
 - (void)showCode:(NSString *)code {
-    self.codeLabel = [[BigCodeLabel alloc] initWithCode:code];
+    self.codeLabel = [[BigCodeLabel alloc] initWithFrame:CGRectMake(15, 150, self.view.frame.size.width - 30.0, 100) code:code];
     [self.view addSubview:self.codeLabel];
 }
 

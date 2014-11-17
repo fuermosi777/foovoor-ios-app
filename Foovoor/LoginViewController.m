@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         // bg color
-        [self.view setBackgroundColor:[UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1]];
+        [self.view setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1]];
     }
     return self;
 }
@@ -55,7 +55,7 @@
     self.tableView.delegate = self;
     
     // scroll bg
-    self.tableView.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     [self.view addSubview:self.tableView];
     
     [self addSigninButton];
@@ -220,7 +220,7 @@
         
     } else if (status == -1) { // unexplained error
         AlertView *alert = [[AlertView alloc] init];
-        [alert showUnknownError];
+        [alert showIncorrectPswdError];
         
     } else if (status == 2) { // new device need confirmation
         DeviceConfirmViewController *deviceViewController = [[DeviceConfirmViewController alloc] init];

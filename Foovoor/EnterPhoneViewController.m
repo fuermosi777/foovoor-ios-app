@@ -21,7 +21,7 @@
     self = [super init];
     if (self) {
         // bg color
-        self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+        self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     }
     return self;
 }

@@ -1,6 +1,7 @@
 // panel view on the home page
 
 #import "PanelView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation PanelView
 
@@ -18,53 +19,102 @@
 }
 
 - (void)showBigView:(CGRect)frame {
+    CGFloat avatarHeight = self.bounds.size.width * 1.0 / 6.0;
+    CGFloat avatarWidth = avatarHeight;
+    CGFloat imageHeight = self.bounds.size.width * 3.0/ 4.0;
+    CGFloat imageWidth = self.bounds.size.width;
+    
+
     //
     self.contentView = [[UIView alloc] initWithFrame:self.bounds];
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
     
     // image view
-    self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,imageWidth,imageHeight)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
     
+    // avatar view
+    self.avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(0,self.imageView.frame.size.height + 15.0, avatarWidth, avatarHeight)];
+    self.avatarView.contentMode = UIViewContentModeScaleAspectFill;
+    self.avatarView.clipsToBounds = YES;
+    
     // title label
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.imageView.frame.size.height * 3.5 / 5.0, self.imageView.frame.size.width - 30.0, 40)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + 15.0, self.imageView.frame.size.height + 5.0, self.imageView.frame.size.width - avatarWidth - 45.0, 40)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.textColor = [UIColor whiteColor];
-    [self.titleLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:20]];
+    self.titleLabel.textColor = [UIColor colorWithRed:0.09 green:0.09 blue:0.09 alpha:1];
+    [self.titleLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:18]];
     
     // subtitle label
-    self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.imageView.frame.size.height * 3.5 / 5.0 + 25.0, self.imageView.frame.size.width - 30.0, 40)];
+    self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(avatarWidth + 15.0, self.imageView.frame.size.height + 5.0 + 25.0, self.imageView.frame.size.width - 30.0, 40)];
     self.subtitleLabel.textColor = [UIColor colorWithRed:0.69 green:0.69 blue:0.69 alpha:1];
     [self.subtitleLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:14]];
     
     // discount label
-    self.discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 40, 20)];
+    self.discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageHeight + avatarHeight + 15.0 + 15.0, avatarWidth, 25)];
+    
+    // divider
+    UILabel *divider = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width / 5.0 * 2.0, self.bounds.size.height + 40.0, self.bounds.size.width / 5.0, 2)];
+    divider.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1];
+    [self.contentView addSubview:divider];
+   
 
     self.discountLabel.textColor = [UIColor whiteColor];
     [self.discountLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.discountLabel.layer setCornerRadius:4.0];
+    [self.discountLabel.layer setCornerRadius:0.0];
+    self.discountLabel.backgroundColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.23 alpha:1];
     self.discountLabel.clipsToBounds = YES;
     [self.discountLabel setFont:[UIFont fontWithName:@"MavenProRegular" size:14]];
     
-    // 加入渐变layer
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.bounds;
-
-    // 渐变颜色
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor clearColor] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6] CGColor], nil];
-    [self.imageView.layer addSublayer:gradient];
-    
     [self addSubview:self.contentView];
     [self.contentView addSubview:self.imageView];
-    [self.imageView addSubview:self.titleLabel];
-    [self.imageView addSubview:self.subtitleLabel];
-    [self.imageView addSubview:self.discountLabel];
+    [self.contentView addSubview:self.avatarView];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.subtitleLabel];
+    [self.contentView addSubview:self.discountLabel];
 }
 
-- (void)addImage:(UIImage *)image {
+- (void)addImage:(NSString *)imageString {
     if (self) {
-        self.imageView.image = image;
+        NSURL *photo_URL = [[NSURL alloc] initWithString:imageString];
+        
+        // start a new image download manager
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        
+        // start a new image download manager
+        [manager downloadWithURL:photo_URL
+                         options:0
+                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                            // NSLog(@"%li",(long)receivedSize);
+                        }
+                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                           if (image) {
+                               self.imageView.image = image;
+                           }
+                       }
+         ];
+    }
+}
+
+- (void)addAvatar:(NSString *)avatarString {
+    if (self) {
+        NSURL *photo_URL = [[NSURL alloc] initWithString:avatarString];
+        
+        // start a new image download manager
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        
+        // start a new image download manager
+        [manager downloadWithURL:photo_URL
+                         options:0
+                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                            // NSLog(@"%li",(long)receivedSize);
+                        }
+                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                           if (image) {
+                               self.avatarView.image = image;
+                           }
+                       }
+         ];
     }
 }
 
@@ -82,14 +132,7 @@
 
 - (void)addDiscount:(NSString *)text {
     if (self) {
-        float discount = [text floatValue];
-        if (discount > 5 && discount <= 10) {
-            self.discountLabel.backgroundColor = [UIColor colorWithRed:0.39 green:0.62 blue:0.37 alpha:0.9];
-        } else if (discount > 10 && discount <= 15){
-            self.discountLabel.backgroundColor = [UIColor colorWithRed:0.71 green:0.16 blue:0.31 alpha:0.9];
-        } else {
-            self.discountLabel.backgroundColor = [UIColor colorWithRed:0.13 green:0.13 blue:0.46 alpha:0.9];
-        }
+        
         self.discountLabel.text = text;
     }
 }

@@ -17,15 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationBar.tintColor = [UIColor whiteColor];
-    
-    // set font
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"MavenProRegular" size:14], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    
-    // set bar button font
-    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
-    
     [self becomeOpaque];
 }
 
@@ -46,6 +37,14 @@
                              forBarMetrics:UIBarMetricsDefault];
     
     [self.navigationBar setShadowImage:[UIImage new]];
+    
+    self.navigationBar.tintColor = [UIColor whiteColor];
+    
+    // set font
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"MavenProRegular" size:14], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    
+    // set bar button font
+    self.navigationBar.titleTextAttributes = attributes;
 }
 
 - (void)becomeOpaque {
@@ -56,9 +55,19 @@
     
     [self.navigationBar.layer addAnimation:transition forKey:nil];
     
-    [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"white"]
+                             forBarMetrics:UIBarMetricsDefault];
     
-    self.navigationBar.barTintColor = [UIColor colorWithRed:0.91 green:0.25 blue:0.15 alpha:1];
+    [self.navigationBar setShadowImage:[UIImage new]];
+    
+    self.navigationBar.tintColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.23 alpha:1];
+
+    // set font
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"MavenProRegular" size:14], NSFontAttributeName, [UIColor colorWithRed:0.93 green:0.35 blue:0.23 alpha:1], NSForegroundColorAttributeName, nil];
+    
+    // set bar button font
+    self.navigationBar.titleTextAttributes = attributes;
+    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }
 
 

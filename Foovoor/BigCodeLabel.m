@@ -10,8 +10,8 @@
 
 @implementation BigCodeLabel
 
-- (id)initWithCode:(NSString *)code {
-    self = [super initWithFrame:CGRectMake(15, 150, 290, 100)];
+- (id)initWithFrame:(CGRect)frame code:(NSString *)code {
+    self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self setText:code];

@@ -19,4 +19,5 @@
 - (id)initWithFrame:(CGRect)frame restaurantID:(NSInteger)restaurantID;
 - (void)loadFail;
 - (void)loadComplete:(NSInteger)like;
+- (void)changeHeart;
 @end

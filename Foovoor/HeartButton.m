@@ -1,12 +1,4 @@
-//
-//  HeartButton.m
-//  Foovoor
-//
-//  Created by Hao Liu on 11/14/14.
-//  Copyright (c) 2014 foovoor. All rights reserved.
-//
 
-#import "HeartButton.h"
 #import "AlertView.h"
 #import "PostFavorite.h"
 
@@ -41,6 +33,7 @@
 }
 
 - (void)changeHeart {
+    NSLog(@"!");
     if ([self checkLoginStatus]) {
         NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&restaurant_id=%ld&action=%@",_username,_password,_restaurantID,@"POST"];
         // sync db
@@ -94,7 +87,6 @@
         _isLiked = NO;
         _heartView.image = [UIImage imageNamed:@"heart"];
     }
-    NSLog(@"%ld",like);
 }
 
 - (void)loadFail {

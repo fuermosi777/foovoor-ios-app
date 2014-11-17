@@ -40,7 +40,6 @@
         [_delegate loadComplete:like];
     } else {
         [_delegate loadFail];
-        NSLog(@"%@",dict);
     }
 }
 @end

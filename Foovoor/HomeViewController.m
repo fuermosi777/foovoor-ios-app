@@ -7,6 +7,7 @@
 #import "MapViewController.h"
 #import "PanelView.h"
 #import "WebViewController.h"
+#import "AlertView.h"
 #import "HeartButton.h"
 
 @interface HomeViewController ()
@@ -33,15 +34,10 @@
     
     
     // set bg color
-    self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.95 blue:0.92 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
     
     // customize navbar title
-    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"foovoor"]];
-    // set clickable
-    UITapGestureRecognizer *titleSingleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                           action:@selector(redirectToAboutView:)];
-    [self.navigationController.navigationBar.topItem.titleView addGestureRecognizer:titleSingleFingerTap];
-    [self.navigationController.navigationBar.topItem.titleView setUserInteractionEnabled:YES];
+    self.navigationController.navigationBar.topItem.title = @"Explore";
     
     // Do any additional setup after loading the view
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
@@ -64,7 +60,8 @@
 }
 
 - (void)initActivityIndicator {
-    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [_indicator setColor:[UIColor colorWithRed:0.93 green:0.35 blue:0.23 alpha:1]];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_indicator];
     self.navigationItem.leftBarButtonItem = item;
     _indicator.hidesWhenStopped = YES;
@@ -132,8 +129,6 @@
     // create vars
     CGFloat bigPanelHeight = self.view.frame.size.width;
     CGFloat bigPanelWidth = self.view.frame.size.width;
-    CGFloat smallPanelHeight = bigPanelHeight * 2.0 / 3.0;
-    CGFloat smallPanelWidth = (self.view.frame.size.width - 5.0) / 2.0;
     
     // create scroll
     [self createScrollView];
@@ -142,7 +137,7 @@
     [self addRefreshButton];
     
     // create a new scroll view
-    self.scroll.contentSize = CGSizeMake(self.view.frame.size.width,bigPanelHeight + ([array count] - 1.0) / 2.0 * smallPanelHeight + ([array count] - 1.0) / 2.0 * 5.0 + 60);
+    self.scroll.contentSize = CGSizeMake(self.view.frame.size.width, (bigPanelHeight + 60.0) * [array count]);
     [self.view addSubview:self.scroll];
     
     
@@ -153,40 +148,29 @@
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
         dictionary = [array objectAtIndex:i];
         
-        PanelView *panel = [PanelView alloc];
-        if (i != 0) {
-            if (i%2 != 0) { // odd
-                panel = [panel initWithFrame:CGRectMake(0, bigPanelHeight + 5.0 + (smallPanelHeight + 5.0) * (i - 1) / 2.0, smallPanelWidth, smallPanelHeight)];
-            } else { // even
-                panel = [panel initWithFrame:CGRectMake(smallPanelWidth + 5.0, bigPanelHeight + 5.0 + (smallPanelHeight + 5.0) * (i - 2) / 2.0, smallPanelWidth, smallPanelHeight)];
-            }
-        } else {
-            panel = [panel initWithFrame:CGRectMake(0, i * (bigPanelHeight + 5), bigPanelWidth, bigPanelHeight)];
+        NSMutableArray *photoArray = [dictionary objectForKey:@"photos"];
 
+        PanelView *panel = [[PanelView alloc] initWithFrame:CGRectMake(10, i * (bigPanelHeight + 60.0), bigPanelWidth - 20.0, bigPanelHeight)];
+        
+        if ([photoArray count] != 0) {
+            NSString *photoString = [photoArray objectAtIndex:0];
+            [panel addImage:photoString];
+        } else {
+            NSString *photoString = [dictionary objectForKey:@"photo"];
+            [panel addImage:photoString];
         }
         
-        
-        // start a new image download manager
-        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        // 取得photo地址
-        NSURL *photo_URL = [[NSURL alloc] initWithString:[dictionary objectForKey:@"photo"]];
-        // start a new image download manager
-        [manager downloadWithURL:photo_URL
-                         options:0
-                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                            // NSLog(@"%li",(long)receivedSize);
-                        }
-                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
-                           if (image) {
-                               [panel addImage:image];
-                           }
-                       }
-         ];
+        [panel addAvatar:[dictionary objectForKey:@"photo"]];
         [panel addTitle:[dictionary objectForKey:@"name"]];
 
         NSString *tags = [[[dictionary objectForKey:@"tag"] valueForKey:@"description"] componentsJoinedByString:@", "];
         [panel addSubtitle:[NSString stringWithFormat:@"%@",tags]];
         [panel addDiscount:[NSString stringWithFormat:@"%.0f%%", [(NSString *)[dictionary objectForKey:@"discount"] doubleValue] * 100]];
+        
+        // heart button
+        HeartButton *heart = [[HeartButton alloc] initWithFrame:CGRectMake(panel.frame.size.width - 40.0, panel.frame.size.width * (3.0 / 4.0 + 1.0 / 6.0) + 30.0, 40.0, 25.0)
+                                                   restaurantID:[[dictionary objectForKey:@"id"] intValue]];
+        [panel addSubview:heart];
         
         
         
@@ -195,15 +179,21 @@
         // 设置awesome view点击
         UITapGestureRecognizer *awesomeViewSingleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                                      action:@selector(showBusinessDetailView:)];
+        awesomeViewSingleFingerTap.numberOfTapsRequired = 1;
+        
         [panel addGestureRecognizer:awesomeViewSingleFingerTap];
         panel.tag = [[dictionary objectForKey:@"id"] intValue];
         [panel setUserInteractionEnabled:YES];
         
-        // add heart
-        HeartButton *heart = [[HeartButton alloc] initWithFrame:CGRectMake(panel.frame.size.width - 35.0, 15.0, 20.0, 20.0)
-                                                   restaurantID:[[dictionary objectForKey:@"id"] intValue]];
-        [panel addSubview:heart];
-
+        
+        // set awesome view double tap
+        UITapGestureRecognizer *awesomeViewDoubleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:heart
+                                                                                                     action:@selector(changeHeart)];
+        awesomeViewDoubleFingerTap.numberOfTapsRequired = 2;
+        
+        [panel addGestureRecognizer:awesomeViewDoubleFingerTap];
+        
+        [awesomeViewSingleFingerTap requireGestureRecognizerToFail:awesomeViewDoubleFingerTap];
     }
 }
 
