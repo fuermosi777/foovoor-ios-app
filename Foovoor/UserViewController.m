@@ -12,6 +12,8 @@
 #import "GetUserInfo.h"
 #import "InputField.h"
 #import "TableViewCellButton.h"
+#import "LearnmoreViewController.h"
+#import "WebViewController.h"
 
 @interface UserViewController ()
 
@@ -70,8 +72,10 @@
 }
 
 - (void)showBeforeLoginView {
-    [self addSigninButton];
-    [self addSignupButton];
+    [self addSigninButton:CGRectMake(0, 80, self.view.frame.size.width, 40)];
+    [self addSignupButton:CGRectMake(-1.0, 140, self.view.frame.size.width + 2.0, 40)];
+    [self addLearnmoreButton:CGRectMake(-1, 200, self.view.frame.size.width + 2.0, 40)];
+    [self addPrivacyAndTermsButton:CGRectMake(-1, 239, self.view.frame.size.width + 2.0, 40)];
 }
 
 - (void)showAfterLoginView {
@@ -228,8 +232,8 @@
     [self showAfterLoginView];
 }
 
-- (void)addSigninButton {
-    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 40)];
+- (void)addSigninButton:(CGRect)frame {
+    UIButton *submitButton = [[UIButton alloc] initWithFrame:frame];
     [submitButton setTitle:@"Sign in" forState:UIControlStateNormal];
     submitButton.backgroundColor = [UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1];
     
@@ -242,12 +246,12 @@
            forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)addSignupButton {
-    UIButton *signupButton = [[UIButton alloc] initWithFrame:CGRectMake(-1.0, 140, self.view.frame.size.width + 2.0, 40)];
+- (void)addSignupButton:(CGRect)frame {
+    UIButton *signupButton = [[UIButton alloc] initWithFrame:frame];
     [signupButton setTitle:@"Sign up" forState:UIControlStateNormal];
     signupButton.backgroundColor = [UIColor clearColor];
     signupButton.layer.borderColor = [[UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1] CGColor];
-    signupButton.layer.borderWidth = 1.0f;
+    signupButton.layer.borderWidth = 0.5f;
     // set text color
     [signupButton setTitleColor:[UIColor colorWithRed:0.93 green:0.35 blue:0.22 alpha:1] forState:UIControlStateNormal];
     
@@ -258,6 +262,54 @@
     [signupButton addTarget:self
                      action:@selector(signupButtonTapped:)
            forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addLearnmoreButton:(CGRect)frame {
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    [button setTitle:@"How to use" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor whiteColor];
+    button.layer.borderColor = [[UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1] CGColor];
+    button.layer.borderWidth = .5f;
+    // set text color
+    [button setTitleColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.57 alpha:1] forState:UIControlStateNormal];
+    
+    // set font
+    button.titleLabel.font = [UIFont fontWithName:@"MavenProRegular" size:14];
+    
+    [self.view addSubview:button];
+    [button addTarget:self
+               action:@selector(redirectToLearnmoreView)
+     forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addPrivacyAndTermsButton:(CGRect)frame {
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    [button setTitle:@"Privacy & Terms" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor whiteColor];
+    button.layer.borderColor = [[UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1] CGColor];
+    button.layer.borderWidth = .5f;
+    // set text color
+    [button setTitleColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.57 alpha:1] forState:UIControlStateNormal];
+    
+    // set font
+    button.titleLabel.font = [UIFont fontWithName:@"MavenProRegular" size:14];
+    
+    [button addTarget:self
+               action:@selector(redirectToPrivacyView:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)redirectToPrivacyView:(UITapGestureRecognizer *)tag {
+    WebViewController *privacyVC = [[WebViewController alloc] init];
+    [privacyVC showView:[NSURL URLWithString:@"https://foovoor.com/app/privacy-terms/"]];
+    [self.navigationController pushViewController:privacyVC animated:YES];
+    
+}
+
+- (void)redirectToLearnmoreView {
+    LearnmoreViewController *VC = [[LearnmoreViewController alloc] init];
+    [self presentViewController:VC animated:YES completion:^{}];
 }
 
 - (void)signinButtonTapped:(id)sender {

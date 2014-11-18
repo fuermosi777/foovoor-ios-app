@@ -369,7 +369,6 @@
                         dateString = [formatter stringFromDate:date];
                     }
                     
-                    
                     [button setTitle:dateString forState:UIControlStateNormal];
                     [button addTarget:self
                                action:@selector(reloadDiscounts:)

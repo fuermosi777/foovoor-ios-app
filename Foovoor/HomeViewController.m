@@ -9,6 +9,8 @@
 #import "WebViewController.h"
 #import "AlertView.h"
 #import "HeartButton.h"
+#import <GBVersionTracking/GBVersionTracking.h> // tracking version, lauching times
+#import "LearnmoreViewController.h"
 
 @interface HomeViewController ()
 
@@ -19,7 +21,6 @@
 @implementation HomeViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -32,6 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //
+    if (!self.checkLoginStatus || [GBVersionTracking isFirstLaunchForVersion]) {
+        [self redirectToLearnmoreView];
+    }
     
     // set bg color
     self.view.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
@@ -71,6 +76,11 @@
     WebViewController *aboutVC = [[WebViewController alloc] init];
     [aboutVC showView:[NSURL URLWithString:@"https://foovoor.com/app/about/"]];
     [self.navigationController pushViewController:aboutVC animated:YES];
+}
+
+- (void)redirectToLearnmoreView {
+    LearnmoreViewController *VC = [[LearnmoreViewController alloc] init];
+    [self presentViewController:VC animated:YES completion:^{}];
 }
 
 - (void)reloadView {
@@ -220,14 +230,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)checkLoginStatus {
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    
+    NSString *username = [userInfo objectForKey:@"username"];
+    
+    if (username) {
+        return true;
+    } else {
+        return false;
+    }
 }
-*/
 
 @end

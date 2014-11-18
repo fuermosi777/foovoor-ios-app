@@ -11,6 +11,7 @@
 		3F1FE6761A09A6F500CE3032 /* CoolNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FE6751A09A6F500CE3032 /* CoolNavigationBar.m */; };
 		3F1FE6791A09A78E00CE3032 /* FoovoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FE6781A09A78E00CE3032 /* FoovoorViewController.m */; };
 		3F1FE67C1A09A9D100CE3032 /* FoovoorTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FE67B1A09A9D100CE3032 /* FoovoorTabViewController.m */; };
+		3F23E00A1A1A5A3400D09091 /* LearnmoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F23E0091A1A5A3400D09091 /* LearnmoreViewController.m */; };
 		3F5E70DF19F4228C00E29024 /* GetNewCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70DE19F4228C00E29024 /* GetNewCode.m */; };
 		3F5E70E819F4296300E29024 /* BigCodeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70E719F4296300E29024 /* BigCodeLabel.m */; };
 		3F5E70EB19F42CBA00E29024 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70EA19F42CBA00E29024 /* LoginViewController.m */; };
@@ -66,6 +67,8 @@
 		3F1FE6781A09A78E00CE3032 /* FoovoorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoovoorViewController.m; sourceTree = "<group>"; };
 		3F1FE67A1A09A9D100CE3032 /* FoovoorTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoovoorTabViewController.h; sourceTree = "<group>"; };
 		3F1FE67B1A09A9D100CE3032 /* FoovoorTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoovoorTabViewController.m; sourceTree = "<group>"; };
+		3F23E0081A1A5A3400D09091 /* LearnmoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnmoreViewController.h; sourceTree = "<group>"; };
+		3F23E0091A1A5A3400D09091 /* LearnmoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnmoreViewController.m; sourceTree = "<group>"; };
 		3F5E70DD19F4228C00E29024 /* GetNewCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetNewCode.h; sourceTree = "<group>"; };
 		3F5E70DE19F4228C00E29024 /* GetNewCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetNewCode.m; sourceTree = "<group>"; };
 		3F5E70E619F4296300E29024 /* BigCodeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigCodeLabel.h; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				3F72808819F8ABC20032FADB /* MapViewController.m */,
 				3FBD36321A0AD757000E1969 /* MapSingleViewController.h */,
 				3FBD36331A0AD757000E1969 /* MapSingleViewController.m */,
+				3F23E0081A1A5A3400D09091 /* LearnmoreViewController.h */,
+				3F23E0091A1A5A3400D09091 /* LearnmoreViewController.m */,
 				3F19901C1A0D2D8B001ADA7C /* WebViewController.h */,
 				3F19901D1A0D2D8B001ADA7C /* WebViewController.m */,
 				3F5E70DD19F4228C00E29024 /* GetNewCode.h */,
@@ -456,6 +461,7 @@
 				3FCB965B19E5E56E006C3ADD /* AppDelegate.m in Sources */,
 				3FCB965819E5E56E006C3ADD /* main.m in Sources */,
 				3F1FE6791A09A78E00CE3032 /* FoovoorViewController.m in Sources */,
+				3F23E00A1A1A5A3400D09091 /* LearnmoreViewController.m in Sources */,
 				3F661E001A003B8000BE0B5D /* SignupViewController.m in Sources */,
 				3FBD362B1A0AA0C8000E1969 /* PanelViewOnMap.m in Sources */,
 				3F661DF419FFF94000BE0B5D /* DeviceConfirmViewController.m in Sources */,

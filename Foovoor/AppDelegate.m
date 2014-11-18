@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <GBVersionTracking/GBVersionTracking.h> // tracking version, lauching times
 
 @interface AppDelegate ()
 
@@ -19,7 +20,9 @@
     // Override point for customization after application launch.
     // set navbar color
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault]; // set status bar color to white
-
+    
+    [GBVersionTracking track];
+    
     return YES;
 }
 

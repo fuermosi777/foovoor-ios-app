@@ -6,6 +6,12 @@
 // project.
 
 
+// GBVersionTracking
+#define COCOAPODS_POD_AVAILABLE_GBVersionTracking
+#define COCOAPODS_VERSION_MAJOR_GBVersionTracking 1
+#define COCOAPODS_VERSION_MINOR_GBVersionTracking 2
+#define COCOAPODS_VERSION_PATCH_GBVersionTracking 0
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
