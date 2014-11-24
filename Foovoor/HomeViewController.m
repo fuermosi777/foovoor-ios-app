@@ -170,7 +170,12 @@
             [panel addImage:photoString];
         }
         
-        [panel addAvatar:[dictionary objectForKey:@"photo"]];
+        // add avatar
+        NSString *avatarString = [dictionary objectForKey:@"photo"];
+        [panel addAvatar:avatarString];
+        
+        
+        // add title
         [panel addTitle:[dictionary objectForKey:@"name"]];
 
         NSString *tags = [[[dictionary objectForKey:@"tag"] valueForKey:@"description"] componentsJoinedByString:@", "];

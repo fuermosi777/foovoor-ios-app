@@ -18,7 +18,7 @@
         
         if ([self checkLoginStatus]){
             // 1 start a post data
-            NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&restaurant_id=%ld&action=%@",_username,_password,_restaurantID,@"GET"];
+            NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&restaurant_id=%ld&action=%@",_username,_password,(long)_restaurantID,@"GET"];
             [self loadData:post];
         }
         
@@ -35,7 +35,7 @@
 - (void)changeHeart {
     NSLog(@"!");
     if ([self checkLoginStatus]) {
-        NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&restaurant_id=%ld&action=%@",_username,_password,_restaurantID,@"POST"];
+        NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&restaurant_id=%ld&action=%@",_username,_password,(long)_restaurantID,@"POST"];
         // sync db
         [self loadData:post];
         

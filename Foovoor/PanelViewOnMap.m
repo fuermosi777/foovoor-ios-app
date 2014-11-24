@@ -30,23 +30,10 @@
     // 添加restaurant图片
     UIImageView *photo = [[UIImageView alloc] initWithFrame:CGRectMake(15, self.bounds.origin.y+15, self.bounds.size.height-30, self.bounds.size.height-30)];
     
-    // start a new image download manager
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     // 取得photo地址
     NSURL *photo_URL = [[NSURL alloc] initWithString:URLString];
-    // start a new image download manager
-    [manager downloadWithURL:photo_URL
-                     options:0
-                    progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                        // NSLog(@"%li",(long)receivedSize);
-                    }
-                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
-                       if (image) {
-                           photo.image = image;
-                       }
-                   }
-     ];
-
+    
+    [photo sd_setImageWithURL:photo_URL];
     
     [self addSubview:photo];
 }

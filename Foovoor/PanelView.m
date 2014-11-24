@@ -78,43 +78,14 @@
     if (self) {
         NSURL *photo_URL = [[NSURL alloc] initWithString:imageString];
         
-        // start a new image download manager
-        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        
-        // start a new image download manager
-        [manager downloadWithURL:photo_URL
-                         options:0
-                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                            // NSLog(@"%li",(long)receivedSize);
-                        }
-                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
-                           if (image) {
-                               self.imageView.image = image;
-                           }
-                       }
-         ];
+        [self.imageView sd_setImageWithURL:photo_URL];
     }
 }
 
 - (void)addAvatar:(NSString *)avatarString {
     if (self) {
         NSURL *photo_URL = [[NSURL alloc] initWithString:avatarString];
-        
-        // start a new image download manager
-        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        
-        // start a new image download manager
-        [manager downloadWithURL:photo_URL
-                         options:0
-                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                            // NSLog(@"%li",(long)receivedSize);
-                        }
-                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
-                           if (image) {
-                               self.avatarView.image = image;
-                           }
-                       }
-         ];
+        [self.avatarView sd_setImageWithURL:photo_URL];
     }
 }
 

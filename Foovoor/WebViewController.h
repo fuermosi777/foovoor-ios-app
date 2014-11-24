@@ -4,7 +4,7 @@
 
 @interface WebViewController : UIViewController <UIWebViewDelegate>
 
-@property UIWebView *webView;
+@property (strong) UIWebView *webView;
 
 - (void)showView:(NSURL *)url;
 

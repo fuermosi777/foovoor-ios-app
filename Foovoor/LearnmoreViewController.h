@@ -10,7 +10,7 @@
 
 @interface LearnmoreViewController : UIViewController <UIScrollViewDelegate>
 
-@property UIScrollView *scrollView;
-@property UIPageControl *pageControl;
+@property (strong) UIScrollView *scrollView;
+@property (strong) UIPageControl *pageControl;
 
 @end

@@ -95,6 +95,8 @@
     [self.view addSubview:self.scrollView];
 }
 
+#pragma mark - table
+
 // 表格section数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2 ;
@@ -119,11 +121,15 @@
     switch (section)
     {
         case 0:
+        {
             sectionName = @"DETAIL";
             break;
+        }
         case 1:
+        {
             sectionName = @"ACTION";
             break;
+        }
     }
     return sectionName;
 }
@@ -134,7 +140,7 @@
     switch (section)
     {
         case 0:
-            numOfRow = 2;
+            numOfRow = 1;
             break;
         case 1:
             numOfRow = 1;
@@ -159,12 +165,6 @@
             {
                 NSString *usernameString = [NSString stringWithFormat:@"Username: %@",[self.dict objectForKey:@"username"]];
                 [[myCellView textLabel] setText:usernameString];
-                break;
-            }
-            case 1:
-            {
-                NSString *expireDateString = [NSString stringWithFormat:@"Expire: %@",[self.dict objectForKey:@"expire_date"]];
-                [[myCellView textLabel] setText:expireDateString];
                 break;
             }
             default:

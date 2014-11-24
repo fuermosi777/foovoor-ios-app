@@ -10,11 +10,11 @@
 
 @interface UserViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property NSString *username;
-@property NSString *password;
-@property NSMutableDictionary *dict;
-@property UITableView *scrollView;
-@property UIActivityIndicatorView *indicator;
+@property (strong) NSString *username;
+@property (strong) NSString *password;
+@property (strong) NSMutableDictionary *dict;
+@property (strong) UITableView *scrollView;
+@property (strong) UIActivityIndicatorView *indicator;
 
 - (void)loadComplete:(NSMutableDictionary *)dict;
 - (void)signOutUser:(id)sender;

@@ -15,10 +15,10 @@
     NSMutableArray *markers;
 
 }
-@property CLLocation *oneLocation;
+@property (strong) CLLocation *oneLocation;
 @property (nonatomic, strong) MKMapView *mapOfView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property NSMutableArray *array;
+@property (strong) NSMutableArray *array;
 
 - (void)loadMarkers;
 - (void)clearMarkerAndScroll;

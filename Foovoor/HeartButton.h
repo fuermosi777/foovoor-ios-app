@@ -12,8 +12,8 @@
 
 @property (strong,nonatomic) UIImageView *heartView;
 @property BOOL isLiked;
-@property NSString *username;
-@property NSString *password;
+@property (strong) NSString *username;
+@property (strong) NSString *password;
 @property NSInteger restaurantID;
 
 - (id)initWithFrame:(CGRect)frame restaurantID:(NSInteger)restaurantID;

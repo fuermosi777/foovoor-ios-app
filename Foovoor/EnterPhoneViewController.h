@@ -15,5 +15,5 @@
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *phone;
-@property UIActivityIndicatorView *indicatorView;
+@property (strong) UIActivityIndicatorView *indicatorView;
 @end

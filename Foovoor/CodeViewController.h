@@ -10,7 +10,7 @@
 
 @interface CodeViewController : UIViewController
 
-@property NSString *code;
+@property (strong) NSString *code;
 
 - (void)loadCode;
 - (void)removeCode;

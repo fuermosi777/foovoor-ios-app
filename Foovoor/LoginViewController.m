@@ -16,6 +16,7 @@
 #import "SignupViewController.h"
 #import "InputField.h"
 #import "EnterPhoneViewController.h"
+#import "RetrievePasswordViewController.h"
 
 @interface LoginViewController ()
 
@@ -63,52 +64,99 @@
 
 // 表格section数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 // row num
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    int numberOfRow;
+    if (section == 0) {
+        numberOfRow = 2;
+    } else if (section == 1) {
+        numberOfRow = 1;
+    }
+    return numberOfRow;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *myCellView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                          reuseIdentifier:@"Cell"];
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
         {
-            InputField *field = [[InputField alloc] initWithFrame:CGRectMake(15, 0, self.view.frame.size.width - 30, 40)];
-            
-            field.placeholder = @"Username";
-            field.delegate = self;
-            field.tag = USERNAMEFIELD;
-            
-            [myCellView addSubview:field];
-            
+            switch (indexPath.row) {
+                case 0:
+                {
+                    InputField *field = [[InputField alloc] initWithFrame:CGRectMake(15, 0, self.view.frame.size.width - 30, 40)];
+                    
+                    field.placeholder = @"Username";
+                    field.delegate = self;
+                    field.tag = USERNAMEFIELD;
+                    
+                    [myCellView addSubview:field];
+                    
+                    break;
+                }
+                case 1:
+                {
+                    InputField *field = [[InputField alloc] initWithFrame:CGRectMake(15, 0, self.view.frame.size.width - 30, 40)];
+                    
+                    field.placeholder = @"Password";
+                    field.delegate = self;
+                    field.tag = PASSWORDFIELD;
+                    field.autocorrectionType = UITextAutocorrectionTypeNo;
+                    field.secureTextEntry = YES;
+                    
+                    [myCellView addSubview:field];
+                    
+                    break;
+                }
+                default:
+                    break;
+            }
             break;
         }
         case 1:
         {
-            InputField *field = [[InputField alloc] initWithFrame:CGRectMake(15, 0, self.view.frame.size.width - 30, 40)];
-            
-            field.placeholder = @"Password";
-            field.delegate = self;
-            field.tag = PASSWORDFIELD;
-            field.autocorrectionType = UITextAutocorrectionTypeNo;
-            field.secureTextEntry = YES;
-            
-            [myCellView addSubview:field];
-            
+            switch (indexPath.row) {
+                case 0:
+                {
+                    UIButton *button = [[UIButton alloc] initWithFrame:myCellView.bounds];
+                    [button setTitle:@"Forget password?" forState:UIControlStateNormal];
+                    [button setTitleColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.57 alpha:1] forState:UIControlStateNormal];
+                    
+                    // set font
+                    button.titleLabel.font = [UIFont fontWithName:@"MavenProRegular" size:14];
+                    // add action
+                    [self.view addSubview:button];
+                    [button addTarget:self
+                               action:@selector(redirectToRetrieveView)
+                     forControlEvents:UIControlEventTouchUpInside];
+                    
+                    [myCellView addSubview:button];
+                    
+                    break;
+                }
+                default:
+                    break;
+            }
             break;
         }
         default:
             break;
     }
     
+    
     // cancel highlight
     myCellView.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return myCellView;
+}
+
+- (void)redirectToRetrieveView {
+    RetrievePasswordViewController *VC = [[RetrievePasswordViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSMutableArray *homeArray;
 
-@property UIActivityIndicatorView *indicator;
+@property (strong) UIActivityIndicatorView *indicator;
 
 
 - (void)loadData;

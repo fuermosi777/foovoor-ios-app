@@ -10,12 +10,12 @@
 
 @interface PanelView : UIView
 
-@property UIImageView *imageView;
-@property UIImageView *avatarView;
-@property UIView *contentView;
-@property UILabel *titleLabel;
-@property UILabel *subtitleLabel;
-@property UILabel *discountLabel;
+@property (strong) UIImageView *imageView;
+@property (strong) UIImageView *avatarView;
+@property (strong) UIView *contentView;
+@property (strong) UILabel *titleLabel;
+@property (strong) UILabel *subtitleLabel;
+@property (strong) UILabel *discountLabel;
 
 - (void)addImage:(NSString *)imageString;
 - (void)addAvatar:(NSString *)avatarString;

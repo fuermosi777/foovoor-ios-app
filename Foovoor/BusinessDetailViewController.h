@@ -8,19 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "BusinessBannerScrollView.h"
+#import <MapKit/MapKit.h>
 
 @interface BusinessDetailViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property NSInteger businessID;
-@property NSMutableDictionary *businessDetail;
+@property (strong) NSMutableDictionary *businessDetail;
+@property (strong) MKMapView *mapView;
 
-@property NSMutableArray *dateArray;
+@property (strong) NSMutableArray *dateArray;
 @property (nonatomic, strong) NSMutableArray *discountArray;
 
-@property UITableView *scrollView;
-@property UIScrollView *discountScroll;
-@property NSMutableArray *dateButtons;
-@property BusinessBannerScrollView *bannerScroll;
-@property UIPageControl *pageControl;
+@property (strong) UITableView *scrollView;
+@property (strong) UIScrollView *discountScroll;
+@property (strong) NSMutableArray *dateButtons;
+@property (strong)BusinessBannerScrollView *bannerScroll;
+@property (strong) UIPageControl *pageControl;
 
 @end

@@ -33,11 +33,28 @@
 @implementation BusinessDetailViewController
 
 - (void)viewWillDisappear:(BOOL)animated {
-
+    [self changeMapType];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
+}
+
+- (void)changeMapType {
+    [super didReceiveMemoryWarning];
+    
+    switch (self.mapView.mapType) {
+        case MKMapTypeStandard:
+        {
+            _mapView.mapType = MKMapTypeHybrid;
+            _mapView.mapType = MKMapTypeStandard;
+        }
+            
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -75,8 +92,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 // table
@@ -397,28 +413,28 @@
         
     } else if (indexPath.section == MAP) { // map
         // 地图
-        MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
-        mapView.showsPointsOfInterest = NO;
+        _mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+        _mapView.showsPointsOfInterest = NO;
         // mapView.delegate = self;
         
-        [myCellView addSubview:mapView];
+        [myCellView addSubview:_mapView];
         
         // set region and zoom
         CLLocationCoordinate2D startCoord;
         startCoord.latitude = [[self.businessDetail objectForKey:@"latitude"] doubleValue];
         startCoord.longitude = [[self.businessDetail objectForKey:@"longitude"] doubleValue];
-        [mapView setRegion:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200) animated:YES];
+        [_mapView setRegion:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200) animated:YES];
         
         // add transparent overlay
-        UIView *overlay = [[UIView alloc] initWithFrame:mapView.bounds];
+        UIView *overlay = [[UIView alloc] initWithFrame:_mapView.bounds];
         [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
-        [mapView addSubview:overlay];
+        [_mapView addSubview:overlay];
         
         // add address label
         UILabel *label = [[UILabel alloc] initWithFrame:overlay.bounds];
         label.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
         label.font = [UIFont fontWithName:@"MavenProRegular" size:14];
-        label.text = [NSString stringWithFormat:@"%@ %@ %@",[self.businessDetail objectForKey:@"street1"],[self.businessDetail objectForKey:@"street2"],[self.businessDetail objectForKey:@"city"]];
+        label.text = [NSString stringWithFormat:@"%@ %@ %@ %@",[self.businessDetail objectForKey:@"street1"],[self.businessDetail objectForKey:@"street2"],[self.businessDetail objectForKey:@"city"],[self.businessDetail objectForKey:@"postcode"]];
         label.textAlignment = NSTextAlignmentCenter;
         
         [overlay addSubview:label];
@@ -524,7 +540,5 @@
         self.pageControl.currentPage = page;
     }
 }
-
-
 
 @end

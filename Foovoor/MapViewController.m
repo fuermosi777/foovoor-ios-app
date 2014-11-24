@@ -24,6 +24,10 @@
     [self reloadView];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [self changeMapType];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // set title
@@ -213,6 +217,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    [self changeMapType];
 }
 
 - (void)clearMarkerAndScroll {
@@ -224,6 +229,24 @@
         [self.mapOfView removeAnnotations:[self.mapOfView annotations]];
     }
 }
+
+- (void)changeMapType {
+    [super didReceiveMemoryWarning];
+    
+    switch (self.mapOfView.mapType) {
+        case MKMapTypeStandard:
+        {
+            _mapOfView.mapType = MKMapTypeHybrid;
+            _mapOfView.mapType = MKMapTypeStandard;
+        }
+            
+            break;
+        default:
+            break;
+    }
+    
+}
+
 /*
 #pragma mark - Navigation
 
