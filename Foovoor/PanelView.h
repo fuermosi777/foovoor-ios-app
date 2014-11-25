@@ -10,17 +10,14 @@
 
 @interface PanelView : UIView
 
-@property (strong) UIImageView *imageView;
-@property (strong) UIImageView *avatarView;
-@property (strong) UIView *contentView;
-@property (strong) UILabel *titleLabel;
-@property (strong) UILabel *subtitleLabel;
-@property (strong) UILabel *discountLabel;
+@property (strong, nonatomic) NSMutableDictionary *dict;
+@property (strong, nonatomic) UIView *contentView;
+@property (strong, nonatomic) UIImageView *bigImageView;
+@property (strong, nonatomic) UIImageView *avatarImageView;
+@property (strong, nonatomic) UILabel *title;
+@property (strong, nonatomic) UILabel *subTitle;
+@property (strong, nonatomic) UILabel *discount;
 
-- (void)addImage:(NSString *)imageString;
-- (void)addAvatar:(NSString *)avatarString;
-- (void)addTitle:(NSString *)text;
-- (void)addSubtitle:(NSString *)text;
-- (void)addDiscount:(NSString *)text;
+- (void)showView;
 
 @end

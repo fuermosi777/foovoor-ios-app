@@ -33,28 +33,13 @@
 @implementation BusinessDetailViewController
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self changeMapType];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
 }
 
-- (void)changeMapType {
-    [super didReceiveMemoryWarning];
-    
-    switch (self.mapView.mapType) {
-        case MKMapTypeStandard:
-        {
-            _mapView.mapType = MKMapTypeHybrid;
-            _mapView.mapType = MKMapTypeStandard;
-        }
-            
-            break;
-        default:
-            break;
-    }
-    
+- (void)viewDidDisappear:(BOOL)animated {
 }
 
 - (void)viewDidLoad {
@@ -412,23 +397,20 @@
         
         
     } else if (indexPath.section == MAP) { // map
-        // 地图
-        _mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
-        _mapView.showsPointsOfInterest = NO;
-        // mapView.delegate = self;
+        NSString *staticMapUrl = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?center=%f,%f&zoom=17&size=%lix100&sensor=true",[[self.businessDetail objectForKey:@"latitude"] doubleValue], [[self.businessDetail objectForKey:@"longitude"] doubleValue],(long)(self.view.frame.size.width)];
+        NSURL *mapUrl = [NSURL URLWithString:[staticMapUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:mapUrl]];
         
-        [myCellView addSubview:_mapView];
+        UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+        mapImageView.image = image;
+        image = nil;
         
-        // set region and zoom
-        CLLocationCoordinate2D startCoord;
-        startCoord.latitude = [[self.businessDetail objectForKey:@"latitude"] doubleValue];
-        startCoord.longitude = [[self.businessDetail objectForKey:@"longitude"] doubleValue];
-        [_mapView setRegion:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200) animated:YES];
+        [myCellView addSubview:mapImageView];
         
         // add transparent overlay
-        UIView *overlay = [[UIView alloc] initWithFrame:_mapView.bounds];
+        UIView *overlay = [[UIView alloc] initWithFrame:mapImageView.bounds];
         [overlay setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
-        [_mapView addSubview:overlay];
+        [mapImageView addSubview:overlay];
         
         // add address label
         UILabel *label = [[UILabel alloc] initWithFrame:overlay.bounds];
@@ -442,8 +424,8 @@
         // add click event
         UITapGestureRecognizer *awesomeViewSingleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                                      action:@selector(redirectMapView:)];
-        [label addGestureRecognizer:awesomeViewSingleFingerTap];
-        [label setUserInteractionEnabled:YES];
+        [mapImageView addGestureRecognizer:awesomeViewSingleFingerTap];
+        [mapImageView setUserInteractionEnabled:YES];
         
     } else if (indexPath.section == DESCRIPTION) {
         [[myCellView textLabel] setText:[self.businessDetail objectForKey:@"description"]];

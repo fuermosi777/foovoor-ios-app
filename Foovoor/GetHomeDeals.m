@@ -7,7 +7,7 @@
 //
 
 #import "GetHomeDeals.h"
-#import "HomeViewController.h"
+#import "HomeTableViewController.h"
 #import "AlertView.h"
 
 @implementation GetHomeDeals

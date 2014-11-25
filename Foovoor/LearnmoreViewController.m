@@ -7,6 +7,7 @@
 //
 
 #import "LearnmoreViewController.h"
+#import <NYXImagesKit/NYXImagesKit.h>
 
 #define PAGES 3.0
 
@@ -49,12 +50,24 @@
     CGFloat xOrigin = i * self.view.frame.size.width;
     UIView *singleView = [[UIView alloc] initWithFrame:CGRectMake(xOrigin, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
+    
     UIImageView *bannerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-    bannerView.image = [UIImage imageNamed:[NSString stringWithFormat:@"learn-more-%f", i + 1]];
+    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"learn-more-%f", i + 1]];
+    
+    UIImage *imageScaled = [image scaleToSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.width * 3.0 / 4.0)];
+    UIImage *imageCropped = [imageScaled cropToSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.width * 3.0 / 4.0)];
+    imageScaled = nil;
+    image = nil;
+    bannerView.image = imageCropped;
+    
     bannerView.clipsToBounds = YES;
     bannerView.contentMode = UIViewContentModeScaleAspectFill;
     
+   
+
+    
     [singleView addSubview:bannerView];
+    
     
     [_scrollView addSubview:singleView];
     

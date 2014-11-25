@@ -35,7 +35,7 @@
     
     NSInteger status = [[dict objectForKey:@"status"] integerValue];
     NSInteger like = [[dict objectForKey:@"like"] integerValue];
-    
+    NSLog(@"%li",(long)like);
     if (status == 1) {
         [_delegate loadComplete:like];
     } else {

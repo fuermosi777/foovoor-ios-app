@@ -33,7 +33,6 @@
 }
 
 - (void)changeHeart {
-    NSLog(@"!");
     if ([self checkLoginStatus]) {
         NSString *post = [NSString stringWithFormat:@"username=%@&password=%@&restaurant_id=%ld&action=%@",_username,_password,(long)_restaurantID,@"POST"];
         // sync db

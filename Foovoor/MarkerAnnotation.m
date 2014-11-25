@@ -10,10 +10,12 @@
 
 @implementation MarkerAnnotation
 
-- (id)initWithLocation: (CLLocationCoordinate2D) coord {
+- (id)initWithLocation: (CLLocationCoordinate2D) coord title:(NSString *)title subTitle:(NSString *)subTitle{
     self = [super init];
     if (self) {
-        self->_coordinate = coord;
+        _coordinate = coord;
+        _title = title;
+        _subtitle = subTitle;
     }
     return self;
 }
@@ -21,8 +23,7 @@
 - (MKAnnotationView *)annotationView {
     MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"Marker"];
     annotationView.enabled = YES;
-    annotationView.canShowCallout = NO;
-    annotationView.image = [UIImage imageNamed:@"bluemarker"];
+    annotationView.canShowCallout = YES;
     
     return annotationView;
 }

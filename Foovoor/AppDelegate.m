@@ -20,7 +20,7 @@
     // Override point for customization after application launch.
     // set navbar color
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault]; // set status bar color to white
-    
+
     [GBVersionTracking track];
     
     return YES;

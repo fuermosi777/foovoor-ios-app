@@ -9,19 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface MapSingleViewController : UIViewController <MKMapViewDelegate, UIScrollViewDelegate>
+@interface MapSingleViewController : UIViewController <MKMapViewDelegate>
 
-{
-    UIScrollView *scroll;
-    NSMutableArray *markers;
-    
-}
-@property (strong) CLLocation *oneLocation;
-@property (nonatomic, strong) MKMapView *mapOfView;
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong) NSMutableDictionary *dict;
-
-- (void)loadMarkers;
-- (void)clearMarkerAndScroll;
+@property (nonatomic, strong) MKMapView *mapView;
+@property (strong, nonatomic) NSDictionary *dict;
 
 @end

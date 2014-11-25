@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HomeViewController.h"
+#import "HomeTableViewController.h"
 
 @interface GetHomeDeals : NSObject
 {
     NSMutableData *incomingData;
 }
-@property (nonatomic, assign) HomeViewController *delegate; // 声明代理
+@property (nonatomic, weak) HomeTableViewController *delegate; // 声明代理
 
 @end

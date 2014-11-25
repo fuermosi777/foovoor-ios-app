@@ -13,6 +13,7 @@
 		3F1FE6791A09A78E00CE3032 /* FoovoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FE6781A09A78E00CE3032 /* FoovoorViewController.m */; };
 		3F1FE67C1A09A9D100CE3032 /* FoovoorTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1FE67B1A09A9D100CE3032 /* FoovoorTabViewController.m */; };
 		3F23E00A1A1A5A3400D09091 /* LearnmoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F23E0091A1A5A3400D09091 /* LearnmoreViewController.m */; };
+		3F344A381A24D9A700D68DE6 /* MapListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F344A371A24D9A700D68DE6 /* MapListViewController.m */; };
 		3F5E70DF19F4228C00E29024 /* GetNewCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70DE19F4228C00E29024 /* GetNewCode.m */; };
 		3F5E70E819F4296300E29024 /* BigCodeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70E719F4296300E29024 /* BigCodeLabel.m */; };
 		3F5E70EB19F42CBA00E29024 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E70EA19F42CBA00E29024 /* LoginViewController.m */; };
@@ -25,14 +26,12 @@
 		3F661E031A0043E100BE0B5D /* InputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F661E021A0043E100BE0B5D /* InputField.m */; };
 		3F661E061A0069AD00BE0B5D /* ActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F661E051A0069AD00BE0B5D /* ActiveViewController.m */; };
 		3F6A4E141A02A48200D3ACD8 /* Maven.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A4E131A02A48200D3ACD8 /* Maven.otf */; };
-		3F72808919F8ABC20032FADB /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F72808819F8ABC20032FADB /* MapViewController.m */; };
 		3F72808C19F8B1560032FADB /* MarkerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F72808B19F8B1560032FADB /* MarkerAnnotation.m */; };
 		3F72809219F9A5BA0032FADB /* DateScrollViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F72809119F9A5BA0032FADB /* DateScrollViewButton.m */; };
 		3FB0F97E1A16680800FB908A /* HeartButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0F97D1A16680800FB908A /* HeartButton.m */; };
 		3FB0F9811A167B5100FB908A /* PostFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0F9801A167B5100FB908A /* PostFavorite.m */; };
 		3FBD36251A0A86D9000E1969 /* GetUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD36241A0A86D9000E1969 /* GetUserInfo.m */; };
 		3FBD36281A0A98C0000E1969 /* TableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD36271A0A98C0000E1969 /* TableViewCellButton.m */; };
-		3FBD362B1A0AA0C8000E1969 /* PanelViewOnMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD362A1A0AA0C8000E1969 /* PanelViewOnMap.m */; };
 		3FBD36311A0AC038000E1969 /* TableViewCellIconAndTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD36301A0AC038000E1969 /* TableViewCellIconAndTextView.m */; };
 		3FBD36341A0AD757000E1969 /* MapSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD36331A0AD757000E1969 /* MapSingleViewController.m */; };
 		3FCB31D819E890BF00732ADB /* BusinessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB31D719E890BF00732ADB /* BusinessDetailViewController.m */; };
@@ -43,9 +42,9 @@
 		3FCB966319E5E56E006C3ADD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCB966219E5E56E006C3ADD /* Images.xcassets */; };
 		3FCB966619E5E56E006C3ADD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FCB966419E5E56E006C3ADD /* LaunchScreen.xib */; };
 		3FCB967219E5E56E006C3ADD /* FoovoorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB967119E5E56E006C3ADD /* FoovoorTests.m */; };
-		3FCB967D19E5E73C006C3ADD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB967C19E5E73C006C3ADD /* HomeViewController.m */; };
 		3FCB968019E5E8DC006C3ADD /* GetHomeDeals.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB967F19E5E8DC006C3ADD /* GetHomeDeals.m */; };
 		3FDCDA521A0C785900EC8A7C /* BusinessBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCDA511A0C785900EC8A7C /* BusinessBannerScrollView.m */; };
+		3FDD16331A24452C00DE2BD4 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDD16321A24452C00DE2BD4 /* HomeTableViewController.m */; };
 		FC9DDA7E661E4D6F9AB4A54C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428E967103CC4D0CAFEFEC91 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +71,8 @@
 		3F1FE67B1A09A9D100CE3032 /* FoovoorTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoovoorTabViewController.m; sourceTree = "<group>"; };
 		3F23E0081A1A5A3400D09091 /* LearnmoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnmoreViewController.h; sourceTree = "<group>"; };
 		3F23E0091A1A5A3400D09091 /* LearnmoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnmoreViewController.m; sourceTree = "<group>"; };
+		3F344A361A24D9A700D68DE6 /* MapListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapListViewController.h; sourceTree = "<group>"; };
+		3F344A371A24D9A700D68DE6 /* MapListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapListViewController.m; sourceTree = "<group>"; };
 		3F5E70DD19F4228C00E29024 /* GetNewCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetNewCode.h; sourceTree = "<group>"; };
 		3F5E70DE19F4228C00E29024 /* GetNewCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetNewCode.m; sourceTree = "<group>"; };
 		3F5E70E619F4296300E29024 /* BigCodeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigCodeLabel.h; sourceTree = "<group>"; };
@@ -95,8 +96,6 @@
 		3F661E041A0069AD00BE0B5D /* ActiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveViewController.h; sourceTree = "<group>"; };
 		3F661E051A0069AD00BE0B5D /* ActiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveViewController.m; sourceTree = "<group>"; };
 		3F6A4E131A02A48200D3ACD8 /* Maven.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Maven.otf; sourceTree = "<group>"; };
-		3F72808719F8ABC20032FADB /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		3F72808819F8ABC20032FADB /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3F72808A19F8B1560032FADB /* MarkerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerAnnotation.h; sourceTree = "<group>"; };
 		3F72808B19F8B1560032FADB /* MarkerAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerAnnotation.m; sourceTree = "<group>"; };
 		3F72809019F9A5BA0032FADB /* DateScrollViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateScrollViewButton.h; sourceTree = "<group>"; };
@@ -109,8 +108,6 @@
 		3FBD36241A0A86D9000E1969 /* GetUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserInfo.m; sourceTree = "<group>"; };
 		3FBD36261A0A98C0000E1969 /* TableViewCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellButton.h; sourceTree = "<group>"; };
 		3FBD36271A0A98C0000E1969 /* TableViewCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellButton.m; sourceTree = "<group>"; };
-		3FBD36291A0AA0C8000E1969 /* PanelViewOnMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelViewOnMap.h; sourceTree = "<group>"; };
-		3FBD362A1A0AA0C8000E1969 /* PanelViewOnMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelViewOnMap.m; sourceTree = "<group>"; };
 		3FBD362F1A0AC038000E1969 /* TableViewCellIconAndTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellIconAndTextView.h; sourceTree = "<group>"; };
 		3FBD36301A0AC038000E1969 /* TableViewCellIconAndTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellIconAndTextView.m; sourceTree = "<group>"; };
 		3FBD36321A0AD757000E1969 /* MapSingleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSingleViewController.h; sourceTree = "<group>"; };
@@ -130,12 +127,12 @@
 		3FCB966B19E5E56E006C3ADD /* FoovoorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoovoorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCB967019E5E56E006C3ADD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FCB967119E5E56E006C3ADD /* FoovoorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoovoorTests.m; sourceTree = "<group>"; };
-		3FCB967B19E5E73C006C3ADD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		3FCB967C19E5E73C006C3ADD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		3FCB967E19E5E8DC006C3ADD /* GetHomeDeals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetHomeDeals.h; sourceTree = "<group>"; };
 		3FCB967F19E5E8DC006C3ADD /* GetHomeDeals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetHomeDeals.m; sourceTree = "<group>"; };
 		3FDCDA501A0C785900EC8A7C /* BusinessBannerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessBannerScrollView.h; sourceTree = "<group>"; };
 		3FDCDA511A0C785900EC8A7C /* BusinessBannerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessBannerScrollView.m; sourceTree = "<group>"; };
+		3FDD16311A24452C00DE2BD4 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
+		3FDD16321A24452C00DE2BD4 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		428E967103CC4D0CAFEFEC91 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C348C59B55FDB57613682225 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E755850B2EEE701FD2766C4E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,16 +204,16 @@
 				3F661E051A0069AD00BE0B5D /* ActiveViewController.m */,
 				3F0424681A1D125500307D98 /* RetrievePasswordViewController.h */,
 				3F0424691A1D125500307D98 /* RetrievePasswordViewController.m */,
-				3FCB967B19E5E73C006C3ADD /* HomeViewController.h */,
-				3FCB967C19E5E73C006C3ADD /* HomeViewController.m */,
+				3FDD16311A24452C00DE2BD4 /* HomeTableViewController.h */,
+				3FDD16321A24452C00DE2BD4 /* HomeTableViewController.m */,
 				3F5E70EC19F4895900E29024 /* UserViewController.h */,
 				3F5E70ED19F4895900E29024 /* UserViewController.m */,
 				3FCB31D619E890BF00732ADB /* BusinessDetailViewController.h */,
 				3FCB31D719E890BF00732ADB /* BusinessDetailViewController.m */,
 				3FCB31D919E8E98800732ADB /* CodeViewController.h */,
 				3FCB31DA19E8E98800732ADB /* CodeViewController.m */,
-				3F72808719F8ABC20032FADB /* MapViewController.h */,
-				3F72808819F8ABC20032FADB /* MapViewController.m */,
+				3F344A361A24D9A700D68DE6 /* MapListViewController.h */,
+				3F344A371A24D9A700D68DE6 /* MapListViewController.m */,
 				3FBD36321A0AD757000E1969 /* MapSingleViewController.h */,
 				3FBD36331A0AD757000E1969 /* MapSingleViewController.m */,
 				3F23E0081A1A5A3400D09091 /* LearnmoreViewController.h */,
@@ -254,8 +251,6 @@
 				3F1FE67B1A09A9D100CE3032 /* FoovoorTabViewController.m */,
 				3FBD36261A0A98C0000E1969 /* TableViewCellButton.h */,
 				3FBD36271A0A98C0000E1969 /* TableViewCellButton.m */,
-				3FBD36291A0AA0C8000E1969 /* PanelViewOnMap.h */,
-				3FBD362A1A0AA0C8000E1969 /* PanelViewOnMap.m */,
 				3FBD362F1A0AC038000E1969 /* TableViewCellIconAndTextView.h */,
 				3FBD36301A0AC038000E1969 /* TableViewCellIconAndTextView.m */,
 				3FDCDA501A0C785900EC8A7C /* BusinessBannerScrollView.h */,
@@ -459,6 +454,7 @@
 				3F661DFA1A000FB600BE0B5D /* AlertView.m in Sources */,
 				3F661E031A0043E100BE0B5D /* InputField.m in Sources */,
 				3FCB31DB19E8E98800732ADB /* CodeViewController.m in Sources */,
+				3F344A381A24D9A700D68DE6 /* MapListViewController.m in Sources */,
 				3FB0F97E1A16680800FB908A /* HeartButton.m in Sources */,
 				3FBD36281A0A98C0000E1969 /* TableViewCellButton.m in Sources */,
 				3FB0F9811A167B5100FB908A /* PostFavorite.m in Sources */,
@@ -469,17 +465,15 @@
 				3F04246A1A1D125500307D98 /* RetrievePasswordViewController.m in Sources */,
 				3F23E00A1A1A5A3400D09091 /* LearnmoreViewController.m in Sources */,
 				3F661E001A003B8000BE0B5D /* SignupViewController.m in Sources */,
-				3FBD362B1A0AA0C8000E1969 /* PanelViewOnMap.m in Sources */,
 				3F661DF419FFF94000BE0B5D /* DeviceConfirmViewController.m in Sources */,
 				3F5E70EB19F42CBA00E29024 /* LoginViewController.m in Sources */,
-				3FCB967D19E5E73C006C3ADD /* HomeViewController.m in Sources */,
 				3F5E70E819F4296300E29024 /* BigCodeLabel.m in Sources */,
 				3FBD36251A0A86D9000E1969 /* GetUserInfo.m in Sources */,
 				3FBD36341A0AD757000E1969 /* MapSingleViewController.m in Sources */,
 				3F661E061A0069AD00BE0B5D /* ActiveViewController.m in Sources */,
+				3FDD16331A24452C00DE2BD4 /* HomeTableViewController.m in Sources */,
 				3FCB968019E5E8DC006C3ADD /* GetHomeDeals.m in Sources */,
 				3F72809219F9A5BA0032FADB /* DateScrollViewButton.m in Sources */,
-				3F72808919F8ABC20032FADB /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
